@@ -7,22 +7,22 @@ const Articles = () => {
   
   useEffect(() => {
     getArticles().then(articlesFromApi => {
-      console.log(articlesFromApi); 
       setArticles(articlesFromApi.articles)
     });
   },[]);
 
   return (
-    <main>
+    <main> 
+    <ul>
     {articles.map(article => {
-      return <ul>
-      <li key = {article.article_id}>
+      return (
+      <li key={article.article_id}>
        <h2>{article.title}</h2>
        <h3>{article.author}</h3>
        <h4>{article.created_at}</h4>
       </li>
-      </ul>
-    })}
+    )})} 
+    </ul>
     </main>
   );
 };
