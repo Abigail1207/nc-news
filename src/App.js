@@ -11,7 +11,6 @@ function App() {
       <Nav/>
       <Routes>
        <Route path="/" element={<Articles />}></Route>
-       <Route paht="articles/:article_id" element={<Articles />}></Route>
       </Routes>
     </div>
   );
