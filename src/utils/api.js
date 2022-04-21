@@ -17,4 +17,5 @@ export const getArticles = (article_id) => {
     return articlesApi.get(path).then(({ data }) => {
       return data
     });
+export const getTopics = ({topic})
 };

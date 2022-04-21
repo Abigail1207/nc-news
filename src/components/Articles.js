@@ -21,9 +21,7 @@ const Articles = () => {
       return (
       <li key={article.article_id}>
       <Link to={`/articles/${article.article_id}`}>
-       <h2>{article.title}</h2>
-       <h3>{article.author}</h3>
-       <h4>{article.created_at}</h4>
+      <ArticleCard article={article} />
        </Link>
       </li>
     )})} 
