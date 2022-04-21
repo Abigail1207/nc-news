@@ -1,3 +1,5 @@
+import Articles from "./Articles";
+
 const Article = ({article}) => {
     return (
         <div>
