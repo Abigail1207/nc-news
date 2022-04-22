@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { CommentsApi } from "../utils/api";
+import { CommentsApi, postComment } from "../utils/api";
 
 const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
-
+  const sendComment = (e) => {
+    e.preventDefault();
+    postComment(article_id, e.target.username.value, e.target.comment.value);
+  };
   useEffect(() => {
     CommentsApi(article_id).then((commentsFromApi) => {
       setComments(commentsFromApi);
@@ -12,6 +15,11 @@ const Comments = ({ article_id }) => {
   return (
     <section>
       <h2>Comments</h2>
+      <form onSubmit={sendComment}>
+        <input name="username"></input>
+        <textarea name="comment"></textarea>
+        <input type="submit"></input>
+      </form>
       <ul>
         {comments.map((comment) => {
           return (
@@ -22,7 +30,6 @@ const Comments = ({ article_id }) => {
             </li>
           );
         })}
-        a
       </ul>
     </section>
   );
