@@ -27,6 +27,12 @@ export const getArticles = (article_id) => {
   return articlesApi.get(`/articles?topic=${topic}`).then(({ data }) => {
     return data.articles;
   })
-};
+}
+export const CommentsApi = (article_id) => {
+  return articlesApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments
+  })
+} 
+// 여기 parameter는 사용자가 입력하는 정보를 가져오는 것이다 ( 링크에서 입력하는 정보 )
  
  
