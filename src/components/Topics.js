@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Topics = () => {
   const [topics, setTopics] = useState([]);
-  console.log(topics);
   useEffect(() => {
     GetTopicsApi().then((topic) => {
       setTopics(topic);
@@ -20,7 +19,7 @@ const Topics = () => {
         {topics.map(({ slug }) => {
           return (
             <l1 key={slug}>
-              <Link to={`/topics/${slug}`}>{slug + 1}</Link>
+              <Link to={`/topics/${slug}`}>{slug}</Link>
             </l1>
           );
         })}

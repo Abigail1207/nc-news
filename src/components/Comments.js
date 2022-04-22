@@ -14,14 +14,15 @@ const Comments = ({ article_id }) => {
       <h2>Comments</h2>
       <ul>
         {comments.map((comment) => {
-          console.log(comment);
           return (
             <li key={comment.comment_id}>
               <span>{comment.author}</span>
+              <span>{comment.votes}</span>
               <p>{comment.body}</p>
             </li>
           );
         })}
+        a
       </ul>
     </section>
   );

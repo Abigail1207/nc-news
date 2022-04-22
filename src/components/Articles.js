@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getArticles, getTopicsApi, CommentsApi } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
 import Comments from "./Comments";
+import ArticleVote from "./ArticleVote";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -21,8 +22,7 @@ const Articles = () => {
 
   return (
     <main>
-      <h2>{topic}</h2>
-
+      <h2 className="Topic">{topic}</h2>
       <ul>
         {articles.map((article) => {
           return (
@@ -30,6 +30,10 @@ const Articles = () => {
               <Link to={`/articles/${article.article_id}`}>
                 <ArticleCard article={article} />
               </Link>
+              <ArticleVote
+                article_id={article.article_id}
+                vote={article.votes}
+              />
             </li>
           );
         })}

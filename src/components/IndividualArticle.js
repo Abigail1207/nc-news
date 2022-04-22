@@ -14,11 +14,12 @@ const IndividualArticle = () => {
     });
   }, []);
   return (
-    <main>
+    <main className="individualArticle">
       <h2>{article.title}</h2>
       <p>{article.body}</p>
       <h3>{article.author}</h3>
       <h4>{article.created_at}</h4>
+      <h4>{article.votes}</h4>
       <Comments article_id={article_id}></Comments>
     </main>
   );
