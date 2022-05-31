@@ -8,19 +8,18 @@ const ArticleVote = ({ article_id, vote }) => {
 
   const incrementVoteCount = () => {
     setErr(null);
-    setVotes((currentVote) => currentVote + 1); // 여기서 currentVote가 의미하는 것은 무엇이지
+    setVotes((currentVote) => currentVote + 1);
     patchIncDevVote(article_id, 1).catch(() => {
       setVotes((currentVote) => currentVote - 1);
-      setErr("Sorry it doesn't work"); // 원래 vote로 리셋해주는 것
+      setErr("Sorry it doesn't work");
     });
   };
   const decrementVoteCount = () => {
     setErr(null);
-    setVotes((currentVote) => currentVote - 1); // 브라우저에서 변경
+    setVotes((currentVote) => currentVote - 1);
     patchIncDevVote(article_id, -1).catch(() => {
-      // 서버값변경
-      setVotes((currentVote) => currentVote + 1); // 에러생기면 원래대로 바꾸기
-      setErr("Sorry it doesn't work"); // 원래 vote로 리셋해주는 것
+      setVotes((currentVote) => currentVote + 1);
+      setErr("Sorry it doesn't work");
     });
   };
 

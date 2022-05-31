@@ -13,14 +13,14 @@ const Topics = () => {
   return (
     <nav>
       <ul>
-        <l1>
+        <li>
           <Link to="/">articles</Link>
-        </l1>
+        </li>
         {topics.map(({ slug }) => {
           return (
-            <l1 key={slug}>
+            <li key={slug}>
               <Link to={`/topics/${slug}`}>{slug}</Link>
-            </l1>
+            </li>
           );
         })}
       </ul>

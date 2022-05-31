@@ -35,16 +35,17 @@ export const CommentsApi = (article_id) => {
 };
 export const patchIncDevVote = (article_id, votes) => {
   return articlesApi.patch(`/articles/${article_id}`, {
-    inc_votes: votes, // 이게 의미하는게 뭔지 모르겠다. 왜 inc_votes로 시작해야하는건지
+    inc_votes: votes,
   });
 };
-// 여기 parameter는 사용자가 입력하는 정보를 가져오는 것이다 ( 링크에서 입력하는 정보 )
+
 export const postComment = (article_id, username, comment) => {
   return articlesApi.post(`/articles/${article_id}/comments`, {
-    // 서버에 데이터 보내라
     body: comment,
-    username: username, // 보내달라는 대로 맞춰서 보내기
-  }); // 물어보기
-}; // 내보내기 위해 ${} => :으로 전송
+    username: username,
+  });
+};
 
-// 문의 404 오류 주소로 post보내면 서버에서 준비를 안하고 있다는 것
+export const deleteComment = (comment_id) => {
+  return articlesApi.delete(`/comments/${comment_id}`);
+};
