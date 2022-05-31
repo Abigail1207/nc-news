@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.Topic {
+  font-size: 30px;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+
+.Header {
+  font-size: 50px;
+}
+
+ul {
+  list-style-type: none;
+}

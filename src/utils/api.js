@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const articlesApi = axios.create({
-  baseURL: "https://news-api-nc.herokuapp.com/api",
+  baseURL: "https://news-api-backend-prj.herokuapp.com/api",
 });
 
 export const getArticleById = (article_id) => {
@@ -10,6 +10,7 @@ export const getArticleById = (article_id) => {
   });
 };
 export const getArticles = (article_id, sort_by, order) => {
+  console.log(sort_by, order);
   return articlesApi
     .get(`/articles?sort_by=${sort_by}&order=${order}`)
     .then(({ data }) => {
@@ -39,10 +40,11 @@ export const patchIncDevVote = (article_id, votes) => {
   });
 };
 
-export const postComment = (article_id, username, comment) => {
+export const postComment = (article_id, username, newComment) => {
+  console.log(article_id, username, newComment);
   return articlesApi.post(`/articles/${article_id}/comments`, {
-    body: comment,
     username: username,
+    body: newComment,
   });
 };
 

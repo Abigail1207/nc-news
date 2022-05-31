@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "../src/css/App.css";
 import Header from "./components/Header";
 import Articles from "./components/Articles";
 import Topics from "./components/Topics";
