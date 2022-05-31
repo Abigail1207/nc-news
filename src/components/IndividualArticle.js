@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 
 const IndividualArticle = () => {
+
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
 

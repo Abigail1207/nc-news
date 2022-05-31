@@ -1,3 +1,4 @@
+
 import React from "react";
 import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ const Articles = () => {
   const { article_id } = useParams();
   const { topic } = useParams();
   const [sortMethod, setSortMethod] = useState("created_at"); //3
-  const [isAscend, setIsAscend] = useState(false); //체크되면 트루
+  const [isAscend, setIsAscend] = useState(false); 
   useEffect(() => {
     if (topic) {
       getTopicsApi(topic).then((topicFromArticle) => {
@@ -20,15 +21,11 @@ const Articles = () => {
     } else {
       getArticles(null, sortMethod, isAscend ? "asc" : "desc").then(
         (articlesFromApi) => {
-          // 트루면 asc로 아니면 desc
           setArticles(articlesFromApi.articles);
         }
       );
     }
-  }, [topic, sortMethod, isAscend]); // 여기 값 바뀔때마다함수 실행 (토픽) 2
-  // date를 클릭해서 다른 것으로 바꾸었다. 보츠로 바꾸었다 35번 코드 실행된다. 그러면 그 함수가 실
-  //행되서 그게 보트로 바뀔것이다. 그러면 밸류도 바뀌고 그리고 솔트메소드가 바뀌면 유즈이펙트가 실행이 된다.
-
+  }, [topic, sortMethod, isAscend]);
   return (
     <main>
       <h2 className="Topic">{topic}</h2>
