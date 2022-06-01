@@ -9,8 +9,8 @@ export const getArticleById = (article_id) => {
     return data.article;
   });
 };
-export const getArticles = (article_id, sort_by, order) => {
-  console.log(sort_by, order);
+export const getArticles = (sort_by, order) => {
+  console.log(order, "<<order");
   return articlesApi
     .get(`/articles?sort_by=${sort_by}&order=${order}`)
     .then(({ data }) => {
@@ -41,7 +41,6 @@ export const patchIncDevVote = (article_id, votes) => {
 };
 
 export const postComment = (article_id, username, newComment) => {
-  console.log(article_id, username, newComment);
   return articlesApi.post(`/articles/${article_id}/comments`, {
     username: username,
     body: newComment,
