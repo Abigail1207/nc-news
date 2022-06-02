@@ -25,6 +25,4 @@ function App() {
   );
 }
 
-// 여기서는 사용자가 path를 입력하면, 즉 articles/1을 하면 element에서 그 정보를 가져온다.
-// 그 element는 :article_id가 잘 연결되어있도록 로직을 잘 써주었어야한다.
 export default App;
