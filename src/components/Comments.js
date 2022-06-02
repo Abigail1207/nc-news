@@ -3,13 +3,28 @@ import { CommentsApi, deleteComment, postComment } from "../utils/api";
 
 const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
+  console.log(comments);
   const [username, setUser] = useState("");
   const [newComment, setNewComment] = useState("");
 
   const sendComment = (e) => {
     e.preventDefault();
-    postComment(article_id, username, newComment).catch((err) => {
-      console.log(err.response.data.msg);
+    if (newComment.length <= 0) return;
+    postComment(article_id, username, newComment);
+    setComments((currComments) => {
+      const date = new Date(Date.now()).toISOString();
+      const newCommentObj = {
+        article_id: article_id,
+        author: username,
+        body: newComment,
+        comment_id: 0,
+        created_at: date,
+        votes: 0,
+      };
+      const newCommentsList = [newCommentObj, ...currComments];
+      setNewComment("");
+      setUser("");
+      return newCommentsList;
     });
   };
   const handleUser = (e) => {
@@ -21,6 +36,11 @@ const Comments = ({ article_id }) => {
 
   const handleDelete = (comment_id) => {
     deleteComment(comment_id);
+    setComments((currComments) => {
+      return currComments.filter(
+        (comment) => comment.comment_id !== comment_id
+      );
+    });
   };
   useEffect(() => {
     CommentsApi(article_id).then((commentsFromApi) => {
@@ -55,6 +75,7 @@ const Comments = ({ article_id }) => {
               <span>{comment.author}</span>
               <p>{comment.votes}</p>
               <p>{comment.body}</p>
+              <p>{comment.created_at}</p>
             </li>
           );
         })}

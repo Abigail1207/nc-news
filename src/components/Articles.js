@@ -5,6 +5,7 @@ import { getArticles, getTopicsApi, CommentsApi } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
 import Comments from "./Comments";
 import ArticleVote from "./ArticleVote";
+import Error from "./Error";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -12,20 +13,31 @@ const Articles = () => {
   const { topic } = useParams();
   const [sortMethod, setSortMethod] = useState("created_at");
   const [isAscend, setIsAscend] = useState(false);
+  const [err, setErr] = useState(null);
+
   useEffect(() => {
     if (topic) {
-      getTopicsApi(topic).then((topicFromArticle) => {
-        console.log(topicFromArticle);
-        setArticles(topicFromArticle);
-      });
+      getTopicsApi(topic)
+        .then((topicFromArticle) => {
+          console.log(topicFromArticle);
+          setArticles(topicFromArticle);
+          setErr(null);
+        })
+        .catch((err) => {
+          setErr(err.response.statusText);
+        });
     } else {
-      getArticles(null, sortMethod, isAscend ? "asc" : "desc").then(
+      getArticles(sortMethod, isAscend ? "asc" : "desc").then(
         (articlesFromApi) => {
           setArticles(articlesFromApi.articles);
         }
       );
     }
   }, [topic, sortMethod, isAscend]);
+
+  if (err) {
+    return <Error errorMsg={err} />;
+  }
   return (
     <main>
       <h2 className="Topic">{topic}</h2>
