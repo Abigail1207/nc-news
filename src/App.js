@@ -10,7 +10,7 @@ import Error from "./components/Error";
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header className="Header" />
       <Topics />
       <Routes>
         <Route path="/" element={<Articles />}></Route>

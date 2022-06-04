@@ -19,7 +19,6 @@ const Articles = () => {
     if (topic) {
       getTopicsApi(topic)
         .then((topicFromArticle) => {
-          console.log(topicFromArticle);
           setArticles(topicFromArticle);
           setErr(null);
         })
@@ -36,12 +35,20 @@ const Articles = () => {
   }, [topic, sortMethod, isAscend]);
 
   if (err) {
-    return <Error errorMsg={err} />;
+    return <Error error={err} />;
   }
+
   return (
     <main>
       <h2 className="Topic">{topic}</h2>
+      <input
+        className="select"
+        type="checkbox"
+        checked={isAscend}
+        onChange={(e) => setIsAscend(e.target.checked)}
+      ></input>
       <select
+        className="select"
         value={sortMethod}
         onChange={(e) => setSortMethod(e.target.value)}
       >
@@ -49,16 +56,15 @@ const Articles = () => {
         <option value={"comment_count"}>Comment Count</option>
         <option value={"votes"}>Votes</option>
       </select>
-      <input
-        type="checkbox"
-        checked={isAscend}
-        onChange={(e) => setIsAscend(e.target.checked)}
-      ></input>
-      <ul>
+
+      <ul className="articles">
         {articles.map((article) => {
           return (
-            <li className={article} key={article.article_id}>
-              <Link to={`/articles/${article.article_id}`}>
+            <li className="article-card" key={article.article_id}>
+              <Link
+                to={`/articles/${article.article_id}`}
+                style={{ paddingLeft: 13, textDecoration: "none" }}
+              >
                 <ArticleCard article={article} />
               </Link>
               <ArticleVote

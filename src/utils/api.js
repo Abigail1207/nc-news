@@ -10,10 +10,10 @@ export const getArticleById = (article_id) => {
   });
 };
 export const getArticles = (sort_by, order) => {
-  console.log(order, "<<order");
   return articlesApi
     .get(`/articles?sort_by=${sort_by}&order=${order}`)
     .then(({ data }) => {
+      console.log(data, "<<data");
       return data;
     });
 };
