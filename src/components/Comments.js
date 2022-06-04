@@ -12,7 +12,10 @@ const Comments = ({ article_id }) => {
     if (newComment.length <= 0) return;
     postComment(article_id, username, newComment);
     setComments((currComments) => {
-      const date = new Date(Date.now()).toISOString();
+      const date = new Date(Date.now());
+      date = date.setSeconds(0, 0);
+      date = date.toISOString();
+
       const newCommentObj = {
         article_id: article_id,
         author: username,
@@ -49,33 +52,37 @@ const Comments = ({ article_id }) => {
   }, [article_id]);
 
   return (
-    <section>
-      <h2>Comments</h2>
+    <section className="comments">
+      <h2 className="section-tit">
+        Comments<span className="count-num">{comments.length}</span>
+      </h2>
       <form onSubmit={sendComment}>
         <input
+          placeholder="Write a nickname"
           value={username}
           name="username"
           onChange={(e) => handleUser(e)}
         ></input>
         <textarea
+          placeholder="Write a comment"
           value={newComment}
           name="comment"
           onChange={(e) => handleComment(e)}
         ></textarea>
-        <button type="submit">submmit</button>
+        <button type="submit">Add</button>
       </form>
 
       <ul>
         {comments.map((comment) => {
           return (
-            <li key={comment.comment_id}>
-              <button onClick={(e) => handleDelete(comment.comment_id)}>
-                delete
-              </button>
+            <li className="comment" key={comment.comment_id}>
               <span>{comment.author}</span>
               <p>{comment.votes}</p>
               <p>{comment.body}</p>
               <p>{comment.created_at}</p>
+              <button onClick={(e) => handleDelete(comment.comment_id)}>
+                delete
+              </button>
             </li>
           );
         })}

@@ -11,20 +11,25 @@ const Topics = () => {
   }, []);
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">articles</Link>
-        </li>
-        {topics.map(({ slug }) => {
-          return (
-            <li key={slug}>
-              <Link to={`/topics/${slug}`}>{slug}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <ul className="topiclist">
+      <li className="topic">
+        <Link to="/" style={{ paddingLeft: 13, textDecoration: "none" }}>
+          home🏠
+        </Link>
+      </li>
+      {topics.map(({ slug }) => {
+        return (
+          <li className="topic" key={slug}>
+            <Link
+              to={`/topics/${slug}`}
+              style={{ paddingLeft: 13, textDecoration: "none" }}
+            >
+              {slug}
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 

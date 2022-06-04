@@ -9,6 +9,7 @@ const ArticleVote = ({ article_id, vote }) => {
   const incrementVoteCount = () => {
     setErr(null);
     setVotes((currentVote) => currentVote + 1);
+
     patchIncDevVote(article_id, 1).catch(() => {
       setVotes((currentVote) => currentVote - 1);
       setErr("Sorry it doesn't work");
