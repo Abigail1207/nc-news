@@ -12,10 +12,7 @@ const Comments = ({ article_id }) => {
     if (newComment.length <= 0) return;
     postComment(article_id, username, newComment);
     setComments((currComments) => {
-      const date = new Date(Date.now());
-      date = date.setSeconds(0, 0);
-      date = date.toISOString();
-
+      const date = new Date(Date.now()).toISOString();
       const newCommentObj = {
         article_id: article_id,
         author: username,
