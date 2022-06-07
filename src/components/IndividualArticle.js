@@ -32,9 +32,12 @@ const IndividualArticle = () => {
     <main className="individualArticle">
       <h2>{article.title}</h2>
       <p>{article.body}</p>
-      <h3>{article.author}</h3>
-      <h4>{article.created_at}</h4>
-      <h4>{article.votes}</h4>
+      <h6>author : {article.author}</h6>
+      <h6>
+        created date :{" "}
+        {article.created_at.match(/([0-9]){4}\-([0-9]){2}\-([0-9]){2}/)[0]}
+      </h6>
+      <h6>vote : {article.votes}</h6>
       <Comments article_id={article_id}></Comments>
     </main>
   );
