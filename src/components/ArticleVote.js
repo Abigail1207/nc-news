@@ -28,7 +28,7 @@ const ArticleVote = ({ article_id, vote }) => {
     <div>
       <button onClick={() => incrementVoteCount()}>👍</button>
       <button onClick={() => decrementVoteCount()}>👎</button>
-      <span> vote : {vote + votes}</span>
+      <span className="vote"> votes : {vote + votes}</span>
       {err && <p>{err}</p>}
     </div>
   );

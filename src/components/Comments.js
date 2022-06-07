@@ -50,9 +50,9 @@ const Comments = ({ article_id }) => {
 
   return (
     <section className="comments">
-      <h2 className="section-tit">
-        Comments<span className="count-num">{comments.length}</span>
-      </h2>
+      <h5 className="section-tit">
+        comments<span className="count-num">{comments.length}</span>
+      </h5>
       <form onSubmit={sendComment}>
         <input
           placeholder="Write a nickname"
@@ -73,10 +73,16 @@ const Comments = ({ article_id }) => {
         {comments.map((comment) => {
           return (
             <li className="comment" key={comment.comment_id}>
-              <span>{comment.author}</span>
-              <p>{comment.votes}</p>
               <p>{comment.body}</p>
-              <p>{comment.created_at}</p>
+              <span>author : {comment.author}</span>
+              <p>
+                created date:
+                {
+                  comment.created_at.match(
+                    /([0-9]){4}\-([0-9]){2}\-([0-9]){2}/
+                  )[0]
+                }
+              </p>
               <button onClick={(e) => handleDelete(comment.comment_id)}>
                 delete
               </button>
