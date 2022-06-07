@@ -37,7 +37,7 @@ const IndividualArticle = () => {
         created date :{" "}
         {article.created_at.match(/([0-9]){4}\-([0-9]){2}\-([0-9]){2}/)[0]}
       </h6>
-      <h6>vote : {article.votes}</h6>
+      <h6>votes : {article.votes}</h6>
       <Comments article_id={article_id}></Comments>
     </main>
   );
